@@ -671,3 +671,13 @@ div.about p a.sky:hover {
 
 div.about p a.sky:visited {
 }
+
+div.back_home span a {
+  display: flex;
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+div.back_home span a:visited {
+  color: #ffffff;
+}
