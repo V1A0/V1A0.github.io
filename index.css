@@ -570,7 +570,7 @@ body {
   text-align: right;
 }
 
-.topAbout {
+.top_about {
   margin-bottom: 2vh;
 }
 
@@ -596,4 +596,32 @@ img.smallImg {
   border: 1px solid rgb(250, 195, 158);
   box-shadow: 0px 15px 35px rgba(255, 201, 185, 0.5);
   transform: scale(1.05);
+}
+
+div.stack {
+  width: 100%;
+  max-width: 900px;
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.stack div.stack_el {
+  width: 10%;
+  min-width: 70px;
+  text-align: center;
+  padding: 10px;
+}
+
+.stack div.stack_el img {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+
+.stack div.stack_el p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
