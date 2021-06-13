@@ -312,7 +312,7 @@ body {
   color: var(--text-color);
   border: 1px solid rgb(0, 0, 0, 0.08);
   box-shadow: 0px 0px 0px rgb(0, 0, 0, 0);
-  transition: 0.2s ease-in-out;
+  transition: 0.4s ease-in-out;
   transform: scale(1);
 }
 
@@ -572,4 +572,28 @@ body {
 
 .topAbout {
   margin-bottom: 2vh;
+}
+
+img.smallImg {
+  padding-right: 5px;
+}
+
+.projects section.favorite{
+  width: 100%;
+  padding: 2.5vh 5%;
+  margin: 1vh 0px;
+  display: inline-block;
+  border-radius: 5px;
+  color: var(--text-color);
+  border: 1px solid rgba(246, 195, 168, 0.5);
+  box-shadow: 0px 0px 0px rgb(0, 0, 0, 0);
+  transition: 0.4s ease-in-out;
+  transform: scale(1);
+}
+
+.projects section.favorite:hover {
+  cursor: pointer;
+  border: 1px solid #F2B6D7;
+  box-shadow: 0px 15px 35px rgb(255, 217, 255, 0.5);
+  transform: scale(1.03);
 }
