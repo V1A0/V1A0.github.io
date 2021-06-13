@@ -605,6 +605,7 @@ div.stack {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  padding: 20px 0 20px 0;
 }
 
 .stack div.stack_el {
@@ -612,6 +613,13 @@ div.stack {
   min-width: 70px;
   text-align: center;
   padding: 10px;
+  transition: 0.3s ease-in-out;
+  transform: scale(1);
+}
+
+.stack div.stack_el:hover {
+  transition: 0.3s ease-in-out;
+  transform: scale(1.05);
 }
 
 .stack div.stack_el img {
@@ -624,4 +632,22 @@ div.stack {
   margin: 0;
   padding: 0;
   text-align: center;
+}
+
+div.about p {
+  max-width: 900px;
+}
+
+div.about p a.sky {
+  background: linear-gradient(to right, rgba(175, 161, 243, 0.1), rgba(232, 153, 153, 0.1));
+  padding: 0 3px 0 5px;
+  border-radius: 5px;
+  color: #4d4657;
+}
+
+div.about p a.sky:hover {
+  transition: 0.5s ease-in-out;
+}
+
+div.about p a.sky:visited {
 }
