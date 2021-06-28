@@ -56,8 +56,11 @@
                             </div>
                             <div class="bottom_section">
                                 <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Python</span>
-                                <span><i class="fas fa-star"></i>&nbsp; 48</span>
-                                <span><i class="fas fa-code-branch"></i>&nbsp; 3</span>
+                                <span>
+                                    <i class="fas fa-star"></i>&nbsp; 49
+                                </span>
+                                <span><i class="fas fa-code-branch"></i>&nbsp; 3
+                                </span>
                             </div>
                         </section>
                         </a>
@@ -72,8 +75,10 @@
                             </div>
                             <div class="bottom_section">
                                 <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Python</span>
-                                <span><i class="fas fa-star"></i>&nbsp; 4</span>
-                                <span><i class="fas fa-code-branch"></i>&nbsp; 0</span>
+                                <span><i class="fas fa-star"></i>&nbsp; 4
+                                </span>
+                                <span><i class="fas fa-code-branch"></i>&nbsp; 0
+                                </span>
                             </div>
                         </section>
                         </a>
@@ -88,8 +93,10 @@
                             </div>
                             <div class="bottom_section">
                                 <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Python</span>
-                                <span><i class="fas fa-star"></i>&nbsp; 9</span>
-                                <span><i class="fas fa-code-branch"></i>&nbsp; 1</span>
+                                <span><i class="fas fa-star"></i>&nbsp; 10
+                                </span>
+                                <span><i class="fas fa-code-branch"></i>&nbsp; 1
+                                </span>
                             </div>
                         </section>
                         </a>
@@ -104,8 +111,16 @@
                             </div>
                             <div class="bottom_section">
                                 <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Python and other </span>
-                                <span><i class="fas fa-star"></i>&nbsp; ?</span>
-                                <span><i class="fas fa-code-branch"></i>&nbsp; ?</span>
+                                <span><i class="fas fa-star"></i>&nbsp;
+                                    <span>
+                                        ?
+                                    </span>
+                                </span>
+                                <span><i class="fas fa-code-branch"></i>&nbsp;
+                                    <span>
+                                        ?
+                                    </span>
+                                </span>
                             </div>
                         </section>
                         </a>
@@ -195,22 +210,30 @@
 
     $(".section_title").toArray().forEach(
         (project) => {
-            let repoName = project.firstChild.textContent.toString()
+            let repoName = project.innerText.replace(' ', '')
             let block = project.parentElement
+            let starsSpan = block.lastElementChild.children[1]
+            let forksSpan = block.lastElementChild.children[2]
+
+            // console.log(starsSpan)
+
+            if (!starsSpan) return console.log('Skipping "' + repoName + '"')
 
             req.open('GET', 'https://api.github.com/repos/v1a0/' + repoName, false)
             req.send()
 
-
             let stars = JSON.parse(req.responseText).stargazers_count
             let fork = JSON.parse(req.responseText).network_count
 
-            if (stars === undefined || fork === undefined) return
+            if (!stars === undefined || fork === undefined) return console.log('Repo "' + repoName + '" not found')
 
-            console.log(block.lastElementChild.children[1].lastChild.data)
+            if (starsSpan) {
+                starsSpan.lastChild.textContent = "   " + stars
+            }
 
-            block.lastElementChild.children[1].lastChild.textContent = "   " + stars
-            block.lastElementChild.children[2].lastChild.textContent = "   " + fork
+            if (forksSpan) {
+                forksSpan.lastChild.textContent = "   " + fork
+            }
 
         })
 
