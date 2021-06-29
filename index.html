@@ -205,37 +205,37 @@
 </body>
 
 <script>
-
-    let req = new XMLHttpRequest()
+    // This script is updating stars and forks counters
+    // Sending request to GitHub API https://api.github.com
+    // Created by v1a0
 
     $(".section_title").toArray().forEach(
-        (project) => {
-            let repoName = project.innerText.replace(' ', '')
-            let block = project.parentElement
-            let starsSpan = block.lastElementChild.children[1]
-            let forksSpan = block.lastElementChild.children[2]
+        (projectTitle) => {
+            // console.log(projectTitle)
 
-            // console.log(starsSpan)
+            let repoName = projectTitle.innerText.replace(' ', '');
+            let block = projectTitle.parentElement;
+            let starsSpan = block.lastElementChild.children[1];
+            let forksSpan = block.lastElementChild.children[2];
 
             if (!starsSpan) return console.log('Skipping "' + repoName + '"')
 
-            req.open('GET', 'https://api.github.com/repos/v1a0/' + repoName, false)
-            req.send()
+            $.getJSON(
+                url='https://api.github.com/repos/v1a0/' + repoName,
+                (data) => {
+                    let stars = data.stargazers_count
+                    let fork = data.network_count
 
-            let stars = JSON.parse(req.responseText).stargazers_count
-            let fork = JSON.parse(req.responseText).network_count
-
-            if (!stars === undefined || fork === undefined) return console.log('Repo "' + repoName + '" not found')
-
-            if (starsSpan) {
-                starsSpan.lastChild.textContent = "   " + stars
-            }
-
-            if (forksSpan) {
-                forksSpan.lastChild.textContent = "   " + fork
-            }
-
-        })
+                    if (starsSpan) starsSpan.lastChild.textContent = "   " + stars
+                    if (forksSpan) forksSpan.lastChild.textContent = "   " + fork
+                }
+            ).fail(
+                () => {
+                    console.log('Repo "' + repoName + '" not found')
+                }
+            )
+        }
+    )
 
 </script>
 
